@@ -13,10 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var roundImage: UIImageView!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var answerBtn: UIButton!
-    
-    @IBOutlet weak var question2Label: UIView!
-    
-    
+ 
     @IBOutlet var customAlert: CustomAlert!
     
     @IBOutlet weak var option1: UIButton!
@@ -28,16 +25,24 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var submitButton: RoundButton!
     
+    @IBOutlet weak var question2: UIView!
+    @IBOutlet weak var question2Label: UILabel!
+    @IBOutlet weak var option1Ques2Btn: UIImageView!
+    @IBOutlet weak var option2Ques2Btn: UIImageView!
+    
     var answer = 0
     var position = -1
     var ans = [1, 3, 4, 7, 8, 13]
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        question2Label.alpha = 0
+        question2.alpha = 0
+        questionImage.image = #imageLiteral(resourceName: "animaux-enigme-e1540481637378")
         roundImage.layer.masksToBounds = true
         roundImage.layer.cornerRadius = roundImage.bounds.height / 2
         customAlert.contentView.isHidden = true
+        customAlert.vc = self
         submitButton.setTitle("Next", for: .normal)
     }
     
@@ -101,7 +106,7 @@ class ViewController: UIViewController {
             ans.remove(at: position)
             customAlert.titleLabel.text = "All done!"
             customAlert.messageLabel.text = "Your answer is \(answer)."
-            customAlert.closeButton.setTitle("Restart", for: .normal)
+            customAlert.closeButton.setTitle("Next", for: .normal)
             print(ans)
             
             var temp = ""
@@ -120,15 +125,13 @@ class ViewController: UIViewController {
             }
             customAlert.messageLabel.text = "Your answer is \(answer)." + " Other people can choose " + temp + ". So is programming. There are many ways to achieve a goal."
             ans = [1, 3, 4, 7, 8, 13]
-            answer = 0
+            
         }
     }
     
     func changeImage() {
-        question2Label.alpha = 1
+        question2.alpha = 1
         questionImage.image = #imageLiteral(resourceName: "enigmes-illusions-doptique2")
-        questionLabel.text = "What do you see first?"
-        
     }
     
     func resetButton() {

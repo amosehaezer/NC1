@@ -21,6 +21,8 @@ class CustomAlert: UIView {
         commonInit()
     }
     
+    var vc: ViewController? = nil
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -36,8 +38,13 @@ class CustomAlert: UIView {
     @IBAction func closeBtn(_ sender: Any) {
         alpha = 0
         contentView.isHidden = false
-        
+        if titleLabel.text == "Not done!" {
+            return
+        } else {
+            vc?.changeImage()
+        }
     }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
